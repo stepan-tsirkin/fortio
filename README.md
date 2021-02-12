@@ -25,6 +25,15 @@ with FortranFile(filename) as f:
     b = f.read_record('f8')
 ```
 
+Read file that contains subrecords (e.g., records greater than 4GB) by setting signed header,
+```
+with FortranFile(filename, header_dtype='int32') as f:
+    ...
+```
+
+Please read the docstring of `FortranFile` for detailed documentation.
+
+
 ## Functions
 - FortranFile(filename, mode='r', header_dtype='uint32',
               auto_endian=True, check_file=True)
