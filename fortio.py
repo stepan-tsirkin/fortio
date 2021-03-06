@@ -80,17 +80,19 @@ class FortranFile(object):
             raise TypeError('header_dtype should be integer type.')
 
         self.file = filename
-        self.filesize = os.path.getsize(filename)
         self.mode = mode
         self.header_dtype = header_dtype
         self.long_records = long_records
         self._fp = open(filename, '%sb' % mode)
 
         if self.mode != 'w':
+            self.filesize = os.path.getsize(filename)
             if auto_endian:
                 self._check_byteorder()
             if check_file:
                 self._check_file()
+        else : 
+            self.filesize = 0
         self._fp.seek(0)  # restore the pos indicator after checking
 
     @property
